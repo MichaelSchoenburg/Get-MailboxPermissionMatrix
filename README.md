@@ -1,7 +1,7 @@
 # Get-MailboxPermissionMatrix
 
     NAME
-        C:\Users\mschoenburg\Desktop\Get-MailboxPermissionMatrix.ps1
+        .\Get-MailboxPermissionMatrix.ps1
 
     SYNOPSIS
         Gives an overview of all mailbox permission using a matrix table.
