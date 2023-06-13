@@ -127,21 +127,14 @@ if (-not ( Get-Module ExchangeOnlineManagement )) {
         Write-Warning -Message "Exchange Online Management PowerShell Module not installed. Please install via 'Install-Module ExchangeOnlineManagement'"
     }
     Write-Warning -Message "Exchange Online Management PowerShell Module not imported. Please import via 'Import-Module ExchangeOnlineManagement'"
-
-    # Requirement: Is there a session?
-} elseif (-not ( (Get-PSSession).where({$_.Name -like "Exchange*"}) )) {
-    Write-Warning -Message "Exchange Online Management PowerShell session not open. Please connect to Exchange Online via 'Connect-ExchangeOnline'"
-
-    # Requirement: Is the session active/open?
-} elseif (-not ( ((Get-PSSession).where({$_.Name -like "Exchange*"}).State -eq 'Opened') )) {
-    Write-Warning -Message "Exchange Online Management PowerShell session not active. Please reconnect to Exchange Online via 'Connect-ExchangeOnline'"
-
 # Requirements satisfied
 } else {
     try {
         $Mbxs = (Get-Mailbox).where({$_.Name -notlike 'DiscoverySearchMailbox*'})
+    } catch [System.Management.Automation.CommandNotFoundException] {
+        Write-Warning -Message "Exchange Online Management PowerShell session active. Please connect to Exchange Online via 'Connect-ExchangeOnline'"
     } catch {
-        Write-Warning -Message "An unexpected error occured while getting all mailboxes."
+        Write-Warning -Message "An unexpected error occurred while getting all mailboxes."
         return $_
     }
 
