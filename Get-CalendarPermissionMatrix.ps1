@@ -31,7 +31,7 @@
     Outputs a CSV file if a path has been specified using the OutputFile parameter.
 
 .LINK
-    GitHub: https://github.com/MichaelSchoenburg/T22-000215
+    GitHub: https://github.com/MichaelSchoenburg/Get-MailboxPermissionMatrix
 
 .NOTES
     Author: Michael Schönburg
